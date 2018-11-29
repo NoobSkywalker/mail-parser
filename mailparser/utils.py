@@ -265,16 +265,9 @@ def parse_received(received):
             log.debug("No matches found for %s in %s" % (
                 pattern.pattern, received))
             continue
-        elif len(matches) > 1:
-            # uh, can't have more than one of each clause in a received.
-            # so either there's more than one or the current regex is wrong
-            msg = "More than one match found for %s in %s" % (
-                pattern.pattern, received)
-            log.error(msg)
-            raise MailParserReceivedParsingError(msg)
         else:
             # otherwise we have one matching clause!
-            log.debug("Found one match for %s in %s" % (
+            log.debug("Found match for %s in %s" % (
                 pattern.pattern, received))
             match = matches[0].groupdict()
             if six.PY2:
